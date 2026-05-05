@@ -2,7 +2,7 @@
   "miniprogramRoot": "./",
   "cloudfunctionRoot": "cloudfunctions/",
   "projectname": "private-gym-management",
-  "appid": "wxc4e82f3dd0f35941",
+  "appid": "----",
   "setting": {
     "urlCheck": false,
     "es6": true,
