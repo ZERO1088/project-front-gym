@@ -1,0 +1,51 @@
+<view class="page-shell page">
+  <view class="date-bar">
+    <button class="date-btn" bindtap="changeDate" data-diff="-1">前一天</button>
+    <picker mode="date" value="{{selectedDate}}" bindchange="pickDate">
+      <view class="date-picker">
+        <view class="date-picker-main">{{selectedDate}}</view>
+        <view class="date-picker-sub">{{selectedWeekdayText}}</view>
+      </view>
+    </picker>
+    <button class="date-btn" bindtap="changeDate" data-diff="1">后一天</button>
+  </view>
+
+  <view class="section-card schedule-hero">
+    <view class="hero-head">
+      <view class="hero-title">课表</view>
+      <view class="hero-icon">日程</view>
+    </view>
+    <view class="hero-subtitle">点击时间可快速创建课程，当日课程按时间显示。</view>
+  </view>
+
+  <view class="week-row">
+    <view
+      wx:for="{{weekDays}}"
+      wx:key="label"
+      class="week-item {{item.active ? 'week-item--active' : ''}}"
+    >
+      {{item.label}}
+    </view>
+  </view>
+
+  <view class="section-card quick-create">
+    <view class="quick-title">快速创建</view>
+    <view class="quick-subtitle">选择时间段后进入创建课程</view>
+
+    <view class="time-grid">
+      <view
+        wx:for="{{hours}}"
+        wx:key="*this"
+        class="time-cell"
+        bindtap="tapCell"
+        data-hour="{{item}}"
+      >
+        <view class="time-row">
+          <view class="time-cell-title">{{item}}</view>
+          <view class="time-plus">+</view>
+        </view>
+        <view class="time-cell-hint">点击创建课程</view>
+      </view>
+    </view>
+  </view>
+</view>

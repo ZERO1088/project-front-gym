@@ -1,0 +1,18 @@
+<view class="page-shell">
+  <view class="hero-card">
+    <view class="hero-title">课程历史</view>
+    <view class="hero-subtitle">{{date || '请选择日期查看课程记录'}}</view>
+  </view>
+
+  <view wx:if="{{history.length}}">
+    <view class="section-card" wx:for="{{history}}" wx:key="id">
+      <view class="detail-stack">
+        <view class="detail-line"><view class="detail-label">时间</view><view class="detail-value">{{item.time_range}}</view></view>
+        <view class="detail-line"><view class="detail-label">教练</view><view class="detail-value">{{item.coach_name || '-'}}</view></view>
+        <view class="detail-line"><view class="detail-label">状态</view><view class="detail-value">{{item.status_text}}</view></view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="section-card" style="text-align:center;color:#8c8c91;">这一天还没有课程记录。</view>
+</view>

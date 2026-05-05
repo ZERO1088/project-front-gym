@@ -1,0 +1,128 @@
+<view class="page-shell page" bindtap="closeSwipe">
+  <view class="date-bar">
+    <button class="date-btn" bindtap="changeDate" data-diff="-1">前一天</button>
+    <picker mode="date" value="{{selectedDate}}" bindchange="pickDate">
+      <view class="date-picker">日期 {{selectedDate}}</view>
+    </picker>
+    <button class="date-btn" bindtap="changeDate" data-diff="1">后一天</button>
+  </view>
+
+  <view class="overview-card section-card">
+    <view class="overview-head">
+      <view class="overview-title-wrap">
+        <view class="overview-title"><text class="blue-dot"></text>今日运营状态</view>
+        <view class="overview-subtitle">课程、确认和完成数据集中展示</view>
+      </view>
+      <view class="overview-weather">
+        <view wx:if="{{loadingWeather}}" class="overview-weather-text">天气加载中...</view>
+        <view wx:elif="{{weather.known}}" class="overview-weather-text">
+          {{weather.city ? weather.city + ' · ' : ''}}{{weather.summary}}
+          <text wx:if="{{weather.min_temp !== null && weather.max_temp !== null}}">
+            {{weather.min_temp}}°C~{{weather.max_temp}}°C
+          </text>
+        </view>
+        <view wx:else class="overview-weather-text">天气未知</view>
+      </view>
+    </view>
+
+    <view class="overview-stats">
+      <view class="overview-stat">
+        <view class="overview-stat-label">今日课程</view>
+        <view class="overview-stat-value">{{overview.course_count}}</view>
+        <view class="overview-stat-icon">课</view>
+      </view>
+      <view class="overview-stat">
+        <view class="overview-stat-label">待确认</view>
+        <view class="overview-stat-value">{{overview.pending_count}}</view>
+        <view class="overview-stat-icon">待</view>
+      </view>
+      <view class="overview-stat">
+        <view class="overview-stat-label">已完成</view>
+        <view class="overview-stat-value">{{overview.completed_count}}</view>
+        <view class="overview-stat-icon">完</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="list-card section-card">
+    <view class="list-head">
+      <view class="list-title"><text class="blue-dot"></text>课程安排</view>
+      <view class="list-subtitle">{{selectedDate}}</view>
+    </view>
+
+    <view wx:if="{{loading}}" class="empty-card no-shadow">正在加载课程...</view>
+
+    <view wx:elif="{{courses.length}}">
+      <view wx:for="{{courses}}" wx:key="id" class="swipe-wrap">
+        <view class="swipe-actions">
+          <button class="swipe-btn swipe-btn--cancel" bindtap="cancelCourse" data-course-id="{{item.id}}" disabled="{{actionCourseId === item.id}}">取消</button>
+          <button class="swipe-btn swipe-btn--delete" bindtap="deleteCourse" data-course-id="{{item.id}}" disabled="{{actionCourseId === item.id}}">删除</button>
+        </view>
+
+        <view
+          class="course-card {{item.showActions ? 'course-card--open' : ''}}"
+          style="border-left: 8rpx solid {{item.course_color}};"
+          bindtouchstart="onTouchStart"
+          bindtouchend="onTouchEnd"
+          data-course-id="{{item.id}}"
+        >
+          <view class="course-head">
+            <view class="course-main">
+              <view class="course-title-row">
+                <view class="course-color-dot" style="background: {{item.course_color}};"></view>
+                <view class="course-title">{{item.time_range}}</view>
+              </view>
+              <view class="course-meta">{{item.display_date}} · {{item.student_count}} 人</view>
+            </view>
+            <view class="status-tag {{item.className}}">{{item.text}}</view>
+          </view>
+
+          <view wx:if="{{item.remark}}" class="course-remark">备注：{{item.remark}}</view>
+          <view class="course-summary">{{item.summary_text}}</view>
+
+          <view wx:for="{{item.students}}" wx:key="student_id" wx:for-item="student" class="student-row">
+            <view class="student-main">
+              <view class="student-name">{{student.student_name}}</view>
+              <view class="student-sub">剩余 {{student.remaining_classes}} 次</view>
+            </view>
+            <view class="student-side">
+              <view class="status-tag {{student.className}}">{{student.text}}</view>
+              <button
+                wx:if="{{student.share_path && student.status === 'pending'}}"
+                class="share-btn"
+                open-type="share"
+                data-share-path="{{student.share_path}}"
+                data-share-title="请确认 {{student.student_name}} 的课程"
+              >
+                {{student.share_label}}
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:else class="empty-state">
+      <view class="empty-illustration">
+        <view class="ill-bg"></view>
+        <view class="ill-dot ill-dot--left"></view>
+        <view class="ill-dot ill-dot--right"></view>
+        <view class="calendar-illus">
+          <view class="calendar-illus-top"></view>
+          <view class="calendar-ring calendar-ring--left"></view>
+          <view class="calendar-ring calendar-ring--right"></view>
+          <view class="calendar-grid">
+            <view wx:for="{{[1,2,3,4,5,6,7,8,9]}}" wx:key="*this" class="calendar-grid-dot"></view>
+          </view>
+        </view>
+        <view class="ill-bubble"></view>
+      </view>
+      <view class="empty-title">今天还没有课程安排</view>
+      <view class="empty-subtitle">先创建一节课程，学员确认后会显示在这里</view>
+      <button class="btn empty-action" bindtap="goCreateCourse">
+        <text class="btn-text-fix">创建第一节课</text>
+        <text class="btn-arrow">></text>
+      </button>
+    </view>
+  </view>
+</view>

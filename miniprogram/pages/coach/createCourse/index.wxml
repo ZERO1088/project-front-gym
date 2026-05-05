@@ -1,0 +1,75 @@
+<view class="page-shell">
+  <view class="hero-card">
+    <view class="hero-title">创建课程</view>
+    <view class="hero-subtitle">按日期、时间和学员组织一次课程，确认后自动扣减课时。</view>
+  </view>
+
+  <view class="card form-card form-stack">
+    <picker mode="date" value="{{form.date}}" bindchange="onDateChange">
+      <view class="field-input">日期：{{form.date || '请选择'}}</view>
+    </picker>
+
+    <view class="time-grid">
+      <picker mode="selector" range="{{hourOptions}}" value="{{startHourIndex}}" bindchange="onTimePartChange" data-type="startHourIndex">
+        <view class="field-input">开始小时：{{hourOptions[startHourIndex]}}</view>
+      </picker>
+      <picker mode="selector" range="{{minuteOptions}}" value="{{startMinuteIndex}}" bindchange="onTimePartChange" data-type="startMinuteIndex">
+        <view class="field-input">开始分钟：{{minuteOptions[startMinuteIndex]}}</view>
+      </picker>
+      <picker mode="selector" range="{{hourOptions}}" value="{{endHourIndex}}" bindchange="onTimePartChange" data-type="endHourIndex">
+        <view class="field-input">结束小时：{{hourOptions[endHourIndex]}}</view>
+      </picker>
+      <picker mode="selector" range="{{minuteOptions}}" value="{{endMinuteIndex}}" bindchange="onTimePartChange" data-type="endMinuteIndex">
+        <view class="field-input">结束分钟：{{minuteOptions[endMinuteIndex]}}</view>
+      </picker>
+    </view>
+
+    <input class="field-input" placeholder="备注" data-key="remark" bindinput="onInput" value="{{form.remark}}" />
+  </view>
+
+  <view class="section-card">
+    <view class="section-title">课程颜色</view>
+    <view class="color-grid">
+      <view
+        wx:for="{{colorOptions}}"
+        wx:key="value"
+        class="color-chip {{form.color === item.value ? 'color-chip--active' : ''}}"
+        bindtap="chooseColor"
+        data-value="{{item.value}}"
+      >
+        <view class="color-dot" style="background: {{item.value}};"></view>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-card">
+    <view class="section-title">学员选择</view>
+    <input class="field-input" placeholder="搜索姓名或手机号" bindinput="onSearchInput" value="{{searchKeyword}}" />
+    <view wx:if="{{loadingStudents}}" class="empty-card">正在加载学员...</view>
+    <view wx:else>
+      <view
+        wx:for="{{students}}"
+        wx:key="id"
+        class="student-picker {{item.selected ? 'student-picker--active' : ''}}"
+        bindtap="toggleStudent"
+        data-student-id="{{item.id}}"
+      >
+        <view>
+          <view class="student-name">{{item.name}}</view>
+          <view class="student-sub">剩余 {{item.remaining_classes}} 次 · {{item.phone}}</view>
+        </view>
+        <view class="student-mark">{{item.selected ? '已选' : '选择'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{createdCourseSummary}}" class="section-card">
+    <view class="section-title">创建结果</view>
+    <view class="field-hint">本次课程已创建，已生成 {{createdCourseSummary.student_count}} 条确认链接。</view>
+  </view>
+
+  <button class="btn primary-action" type="primary" bindtap="submit" loading="{{submitting}}" disabled="{{submitting}}">
+    {{submitting ? '创建中...' : '创建课程'}}
+  </button>
+</view>

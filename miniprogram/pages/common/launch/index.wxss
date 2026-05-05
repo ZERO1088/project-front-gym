@@ -1,0 +1,63 @@
+.launch-page {
+  min-height: 100vh;
+  padding: 140rpx 48rpx 80rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.98), rgba(244, 244, 248, 0.92) 48%, rgba(236, 236, 241, 0.96) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.launch-orb {
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #111111, #343438);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 24rpx 52rpx rgba(17, 17, 17, 0.18);
+}
+
+.launch-symbol {
+  color: #ffffff;
+  font-size: 120rpx;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.launch-title {
+  margin-top: 54rpx;
+  color: #111111;
+  font-size: 42rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+}
+
+.launch-subtitle {
+  margin-top: 18rpx;
+  color: #6f6f73;
+  font-size: 26rpx;
+  line-height: 1.7;
+}
+
+.launch-caption {
+  margin-top: 12rpx;
+  color: #9a9aa1;
+  font-size: 22rpx;
+  line-height: 1.7;
+}
+
+.launch-skip {
+  margin-top: 56rpx;
+  padding: 18rpx 32rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1rpx solid rgba(17, 17, 17, 0.06);
+  color: #4f4f55;
+  font-size: 24rpx;
+  box-shadow: 0 14rpx 28rpx rgba(17, 17, 17, 0.05);
+}

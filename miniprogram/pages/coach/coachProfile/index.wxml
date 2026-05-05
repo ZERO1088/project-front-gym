@@ -1,0 +1,89 @@
+<view class="page-shell page">
+  <view wx:if="{{!access.has_access}}" class="section-card access-card">
+    <view class="section-title">教练权限验证</view>
+    <view class="section-caption">当前微信未开通教练权限，请输入管理员发放的邀请码完成绑定。</view>
+    <input class="code-input" placeholder="输入邀请码" value="{{inviteCode}}" bindinput="onInviteCodeInput" />
+    <button class="btn action-btn" bindtap="bindInvite">
+      <text class="btn-text-fix">绑定教练身份</text>
+    </button>
+  </view>
+
+  <view wx:elif="{{access.has_access}}">
+    <view class="section-card profile-hero">
+      <view class="profile-row">
+        <view class="avatar-badge">{{profile.avatar_text}}</view>
+        <view class="profile-copy">
+          <view class="hero-title-row">
+            <view class="hero-title">{{profile.name}}</view>
+            <view wx:if="{{access.is_manager}}" class="status-tag status-available">管理员</view>
+          </view>
+          <view class="hero-phone">{{profile.phone || '00000000000'}}</view>
+        </view>
+      </view>
+      <view class="hero-note">把今日安排、明日节奏和待确认事项集中在同一视图中。</view>
+    </view>
+
+    <view class="stats-grid">
+      <view class="stat-card">
+        <view class="stat-head">今</view>
+        <view class="stat-label">今日上课</view>
+        <view class="stat-value">{{profile.today_courses}}</view>
+        <view class="stat-foot">节</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-head">明</view>
+        <view class="stat-label">明日上课</view>
+        <view class="stat-value">{{profile.tomorrow_courses}}</view>
+        <view class="stat-foot">节</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-head">月</view>
+        <view class="stat-label">本月累计</view>
+        <view class="stat-value">{{profile.monthly_courses}}</view>
+        <view class="stat-foot">总课程数</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-head">待</view>
+        <view class="stat-label">待确认</view>
+        <view class="stat-value">{{profile.pending_students}}</view>
+        <view class="stat-foot">位学员</view>
+      </view>
+    </view>
+
+    <view class="section-card quick-entry-section">
+      <view class="card-title-row">
+        <view class="card-title">更多功能</view>
+      </view>
+      <view class="section-caption">扩展能力与运营资料管理。</view>
+      <view class="feature-item" wx:for="{{quickActions}}" wx:key="title" bindtap="goAction" data-url="{{item.url}}">
+        <view class="feature-main">
+          <view class="feature-title">{{item.title}}</view>
+          <view class="feature-subtitle">{{item.subtitle}}</view>
+        </view>
+        <view class="feature-arrow">></view>
+      </view>
+    </view>
+
+    <view wx:if="{{access.is_manager}}" class="section-card invite-section">
+      <view class="card-title-row">
+        <view class="card-title">教练邀请</view>
+      </view>
+      <view class="section-caption">管理员创建邀请码后，可发给新教练完成身份绑定。</view>
+
+      <input class="code-input" placeholder="新教练姓名" value="{{newCoachName}}" bindinput="onNewCoachNameInput" />
+      <input class="code-input" placeholder="新教练手机号" value="{{newCoachPhone}}" bindinput="onNewCoachPhoneInput" />
+      <button class="btn action-btn" bindtap="createInvite">
+        <text class="btn-text-fix">创建邀请码</text>
+      </button>
+
+      <view wx:if="{{latestInvite}}" class="invite-result">
+        <view class="invite-title-row">
+          <view class="invite-code">邀请码：{{latestInvite.code}}</view>
+          <view class="status-tag {{latestInvite.className}}">{{latestInvite.text}}</view>
+        </view>
+        <view class="invite-expire">有效期至：{{latestInvite.expires_at}}</view>
+        <button class="ghost-btn copy-btn" bindtap="copyLatestInvite">复制邀请码</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+<view class="page-shell">
+  <view class="hero-card">
+    <view class="hero-title">添加学员</view>
+    <view class="hero-subtitle">先录入基础信息和课时，之后就可以排课、分享确认和管理课次。</view>
+  </view>
+
+  <view class="card form-card form-stack">
+    <input class="field-input" placeholder="学员姓名" data-key="name" bindinput="onInput" value="{{form.name}}" />
+    <input class="field-input" placeholder="手机号码" type="number" data-key="phone" bindinput="onInput" value="{{form.phone}}" />
+    <input class="field-input" placeholder="性别" data-key="gender" bindinput="onInput" value="{{form.gender}}" />
+    <input class="field-input" placeholder="身高" type="digit" data-key="height" bindinput="onInput" value="{{form.height}}" />
+    <input class="field-input" placeholder="体重" type="digit" data-key="weight" bindinput="onInput" value="{{form.weight}}" />
+    <input class="field-input" placeholder="生日" data-key="birthday" bindinput="onInput" value="{{form.birthday}}" />
+    <input class="field-input" placeholder="总课时" type="number" data-key="total_classes" bindinput="onInput" value="{{form.total_classes}}" />
+    <input class="field-input" placeholder="训练目标" data-key="goal" bindinput="onInput" value="{{form.goal}}" />
+    <textarea class="field-textarea" placeholder="备注信息" data-key="remark" bindinput="onInput" value="{{form.remark}}"></textarea>
+  </view>
+
+  <button class="btn primary-action" type="primary" bindtap="submit" loading="{{submitting}}" disabled="{{submitting}}">
+    {{submitting ? '保存中...' : '保存学员'}}
+  </button>
+</view>

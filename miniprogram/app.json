@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/coach/todo/index",
+    "pages/common/launch/index",
+    "pages/common/contractRecord/index",
+    "pages/coach/schedule/index",
+    "pages/coach/createCourse/index",
+    "pages/coach/students/index",
+    "pages/coach/addStudent/index",
+    "pages/coach/coachProfile/index",
+    "pages/student/home/index",
+    "pages/student/history/index",
+    "pages/student/profile/index",
+    "pages/common/courseConfirm/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "\u79c1\u6559\u5065\u8eab\u623f\u7ba1\u7406",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f8fa"
+  },
+  "tabBar": {
+    "color": "#888",
+    "selectedColor": "#111",
+    "backgroundColor": "#fff",
+    "list": [
+      { "pagePath": "pages/coach/todo/index", "text": "\u8bfe\u7a0b" },
+      { "pagePath": "pages/coach/schedule/index", "text": "\u8bfe\u8868" },
+      { "pagePath": "pages/coach/students/index", "text": "\u5b66\u5458" },
+      { "pagePath": "pages/coach/coachProfile/index", "text": "\u6211\u7684" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

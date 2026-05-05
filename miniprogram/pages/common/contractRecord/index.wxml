@@ -1,0 +1,65 @@
+<view class="page-shell page">
+  <view class="hero-card">
+    <view class="hero-title">合同记录</view>
+    <view class="hero-subtitle">用于存档合同照片和备注信息。教练/管理员可编辑，学员仅可查看。</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="empty-card">正在加载合同记录...</view>
+
+  <view wx:elif="{{unboundStudent}}" class="section-card empty-block">
+    <view class="empty-title">尚未绑定学员身份</view>
+    <view class="empty-subtitle">请先通过教练发送的课程确认入口完成绑定，再查看合同记录。</view>
+  </view>
+
+  <view wx:elif="{{role === 'coach' && !students.length}}" class="section-card empty-block">
+    <view class="empty-title">还没有学员</view>
+    <view class="empty-subtitle">请先在学员管理中创建学员，再录入合同记录。</view>
+  </view>
+
+  <view wx:else class="section-card contract-card">
+    <view wx:if="{{role === 'coach'}}" class="field-block">
+      <view class="field-label">学员</view>
+      <picker mode="selector" range="{{students}}" range-key="name" value="{{selectedStudentIndex}}" bindchange="onStudentChange">
+        <view class="picker-value">{{selectedStudentName || '请选择学员'}}</view>
+      </picker>
+    </view>
+
+    <view wx:if="{{role === 'student'}}" class="field-block">
+      <view class="field-label">学员</view>
+      <view class="picker-value">{{selectedStudentName || '-'}}</view>
+    </view>
+
+    <view class="field-block">
+      <view class="field-label">合同照片（最多 3 张）</view>
+      <view class="photo-grid">
+        <view wx:for="{{photos}}" wx:key="*this" class="photo-item">
+          <image class="photo-img" src="{{item}}" mode="aspectFill" bindtap="previewPhoto" data-src="{{item}}" />
+          <view wx:if="{{editable}}" class="photo-remove" bindtap="removePhoto" data-index="{{index}}">×</view>
+        </view>
+        <view wx:if="{{editable && photos.length < 3}}" class="photo-add" bindtap="choosePhotos">
+          <view class="photo-add-icon">+</view>
+          <view class="photo-add-text">从相册添加</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="field-block">
+      <view class="field-label">备注</view>
+      <textarea
+        class="remark-input"
+        placeholder="{{editable ? '输入合同备注' : '暂无备注'}}"
+        value="{{remark}}"
+        maxlength="300"
+        auto-height
+        disabled="{{!editable}}"
+        bindinput="onRemarkInput"
+      />
+    </view>
+
+    <view wx:if="{{updatedAt}}" class="updated-time">最近更新：{{updatedAt}}</view>
+
+    <button wx:if="{{editable}}" class="btn save-btn" bindtap="saveContract" disabled="{{saving || uploading}}">
+      {{saving ? '保存中...' : '保存合同记录'}}
+    </button>
+  </view>
+</view>

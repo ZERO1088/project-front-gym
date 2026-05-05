@@ -1,0 +1,266 @@
+.page {
+  padding: 18rpx 18rpx 28rpx;
+}
+
+.manager-hero {
+  border-radius: 24rpx;
+  margin-bottom: 12rpx;
+}
+
+.hero-row {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+}
+
+.hero-icon {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: #eaf1ff;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+}
+
+.hero-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-title {
+  font-size: 34rpx;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #111827;
+}
+
+.hero-subtitle {
+  margin-top: 8rpx;
+  font-size: 20rpx;
+  color: #6b7280;
+}
+
+.add-btn {
+  margin-top: 16rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  padding: 0;
+}
+
+.add-btn--empty {
+  margin-top: 16rpx;
+}
+
+.student-card {
+  margin-top: 12rpx;
+  padding: 18rpx;
+  border-radius: 22rpx;
+  position: relative;
+}
+
+.student-card--new {
+  border-color: #bfdbfe;
+  background: #f8fbff;
+}
+
+.student-new-badge {
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+  padding: 6rpx 12rpx;
+  border-radius: 999rpx;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 20rpx;
+}
+
+.student-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12rpx;
+}
+
+.student-head-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.student-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.student-name {
+  color: #111827;
+  font-size: 32rpx;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.student-phone {
+  margin-top: 8rpx;
+  color: #6b7280;
+  font-size: 26rpx;
+}
+
+.student-summary-tip {
+  margin-top: 8rpx;
+  color: #6b7280;
+  font-size: 22rpx;
+}
+
+.student-arrow {
+  min-width: 96rpx;
+  text-align: center;
+  padding: 8rpx 14rpx;
+  border-radius: 999rpx;
+  background: #f3f4f6;
+  color: #4b5563;
+  font-size: 22rpx;
+}
+
+.student-detail {
+  margin-top: 14rpx;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10rpx;
+}
+
+.metric-card {
+  background: #f8fafc;
+  border: 1rpx solid #e5e7eb;
+  border-radius: 14rpx;
+  padding: 12rpx 14rpx;
+}
+
+.metric-card--highlight {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.metric-label {
+  color: #94a3b8;
+  font-size: 22rpx;
+}
+
+.metric-value {
+  margin-top: 8rpx;
+  color: #111827;
+  font-size: 42rpx;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.class-actions {
+  display: flex;
+  gap: 12rpx;
+  margin-top: 12rpx;
+}
+
+.class-btn {
+  flex: 1;
+  margin: 0;
+  height: 58rpx;
+  line-height: 58rpx;
+  border-radius: 999rpx;
+  background: #f3f4f6;
+  color: #374151;
+  border: 1rpx solid #e5e7eb;
+  font-size: 24rpx;
+  font-weight: 600;
+  padding: 0;
+}
+
+.class-btn--primary {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+.detail-panel {
+  margin-top: 12rpx;
+  border: 1rpx solid #e8edf4;
+  border-radius: 14rpx;
+  padding: 10rpx 14rpx;
+  background: #ffffff;
+}
+
+.panel-title {
+  color: #111827;
+  font-size: 26rpx;
+  font-weight: 700;
+  margin-bottom: 6rpx;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14rpx;
+  padding-top: 10rpx;
+  margin-top: 10rpx;
+  border-top: 1rpx solid #edf1f7;
+}
+
+.detail-row:first-of-type {
+  margin-top: 0;
+}
+
+.detail-label {
+  color: #94a3b8;
+  font-size: 24rpx;
+}
+
+.detail-value {
+  color: #111827;
+  font-size: 24rpx;
+  text-align: right;
+  flex: 1;
+}
+
+.manage-actions {
+  margin-top: 12rpx;
+}
+
+.delete-btn {
+  width: 100%;
+  margin: 0;
+  height: 58rpx;
+  line-height: 58rpx;
+  border-radius: 999rpx;
+  background: #fff;
+  border: 1rpx solid #fca5a5;
+  color: #ef4444;
+  font-size: 24rpx;
+  font-weight: 600;
+  padding: 0;
+}
+
+.empty-card {
+  margin-top: 14rpx;
+  text-align: center;
+}
+
+.empty-title {
+  color: #111827;
+  font-size: 32rpx;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.empty-desc {
+  margin-top: 10rpx;
+  color: #6b7280;
+  font-size: 24rpx;
+  line-height: 1.7;
+}

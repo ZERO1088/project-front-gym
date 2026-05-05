@@ -1,0 +1,164 @@
+.page {
+  padding: 18rpx 18rpx 28rpx;
+}
+
+.date-bar {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 14rpx;
+}
+
+.date-btn {
+  min-width: 130rpx;
+  height: 74rpx;
+  line-height: 74rpx;
+  margin: 0;
+  border-radius: 20rpx;
+  border: 1rpx solid #e4e8ef;
+  background: #ffffff;
+  color: #374151;
+  font-size: 24rpx;
+}
+
+.date-picker {
+  flex: 1;
+  min-height: 92rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #e4e8ef;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-picker-main {
+  font-size: 30rpx;
+  color: #111827;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.date-picker-sub {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #6b7280;
+}
+
+.schedule-hero {
+  border-radius: 24rpx;
+}
+
+.hero-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-title {
+  font-size: 42rpx;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #111827;
+}
+
+.hero-icon {
+  font-size: 28rpx;
+  color: #93c5fd;
+}
+
+.hero-subtitle {
+  margin-top: 10rpx;
+  color: #6b7280;
+  font-size: 24rpx;
+  line-height: 1.6;
+}
+
+.week-row {
+  margin-top: 12rpx;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8rpx;
+}
+
+.week-item {
+  text-align: center;
+  height: 58rpx;
+  line-height: 58rpx;
+  border-radius: 16rpx;
+  border: 1rpx solid #e5e7eb;
+  background: #f8fafc;
+  color: #6b7280;
+  font-size: 22rpx;
+}
+
+.week-item--active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.quick-create {
+  margin-top: 12rpx;
+  border-radius: 24rpx;
+}
+
+.quick-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #111827;
+}
+
+.quick-subtitle {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #9ca3af;
+}
+
+.time-grid {
+  margin-top: 12rpx;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10rpx;
+}
+
+.time-cell {
+  border: 1rpx solid #e8edf4;
+  border-radius: 16rpx;
+  background: #ffffff;
+  padding: 16rpx;
+}
+
+.time-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time-cell-title {
+  font-size: 38rpx;
+  line-height: 1.15;
+  font-weight: 700;
+  color: #111827;
+}
+
+.time-plus {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 1rpx solid #e3e8f0;
+  background: #f8fafc;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+}
+
+.time-cell-hint {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #9ca3af;
+}

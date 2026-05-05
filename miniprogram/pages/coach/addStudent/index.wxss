@@ -1,0 +1,7 @@
+.form-card {
+  padding-bottom: 24rpx;
+}
+
+.primary-action {
+  margin-top: 24rpx;
+}

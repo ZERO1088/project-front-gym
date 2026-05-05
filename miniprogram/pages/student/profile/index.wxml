@@ -1,0 +1,60 @@
+<view class="page-shell student-page">
+  <view class="segment-card">
+    <view class="segment-item" bindtap="goCalendar">日历</view>
+    <view class="segment-item segment-item--active">我的</view>
+  </view>
+
+  <view class="hero-card">
+    <view class="hero-title">我的</view>
+    <view class="hero-subtitle">绑定后会自动显示你的课程信息、历史记录和课时状态。</view>
+  </view>
+
+  <view wx:if="{{unbound}}" class="section-card empty-state">
+    <view class="section-title">尚未绑定学员身份</view>
+    <view class="hero-subtitle">请先从教练发送的课程确认页进入，系统会自动完成本机绑定。</view>
+  </view>
+
+  <block wx:elif="{{student}}">
+    <view class="hero-card profile-card">
+      <view class="avatar-badge">{{student.name ? student.name.slice(0, 1) : '学'}}</view>
+      <view class="hero-title">{{student.name}}</view>
+      <view class="hero-subtitle">{{student.phone || '未填写手机号'}}</view>
+    </view>
+
+    <view class="stats-grid">
+      <view class="stat-card">
+        <view class="stat-label">总课时</view>
+        <view class="stat-value">{{student.total_classes}}</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-label">剩余课时</view>
+        <view class="stat-value">{{student.remaining_classes}}</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-label">已上课时</view>
+        <view class="stat-value">{{student.used_classes}}</view>
+      </view>
+    </view>
+
+    <view class="section-card">
+      <view class="detail-stack">
+        <view class="detail-line"><view class="detail-label">训练目标</view><view class="detail-value">{{student.goal || '-'}}</view></view>
+        <view class="detail-line"><view class="detail-label">备注</view><view class="detail-value">{{student.remark || '-'}}</view></view>
+        <view class="detail-line"><view class="detail-label">当前绑定</view><view class="detail-value">{{student.is_bound ? '已绑定微信' : '未绑定'}}</view></view>
+      </view>
+    </view>
+
+    <view class="section-card more-section">
+      <view class="section-title">更多功能</view>
+      <view class="action-item" bindtap="goContractRecord">
+        <view>
+          <view class="action-title">合同记录</view>
+          <view class="action-subtitle">查看教练上传的合同照片和备注</view>
+        </view>
+        <view class="action-arrow">></view>
+      </view>
+    </view>
+
+    <button class="ghost-btn reset-btn" bindtap="resetBinding">清除本机绑定缓存</button>
+  </block>
+</view>

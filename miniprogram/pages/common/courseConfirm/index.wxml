@@ -1,0 +1,26 @@
+<view class="page-shell">
+  <view class="hero-card">
+    <view class="hero-title">课程确认</view>
+    <view class="hero-subtitle">{{detail ? detail.student_name : '正在加载课程详情'}}</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="empty-card">正在加载...</view>
+
+  <view wx:elif="{{detail}}" class="section-card">
+    <view class="detail-stack">
+      <view class="detail-line"><view class="detail-label">日期</view><view class="detail-value">{{detail.date}}</view></view>
+      <view class="detail-line"><view class="detail-label">时间</view><view class="detail-value">{{detail.start_time}} - {{detail.end_time}}</view></view>
+      <view class="detail-line"><view class="detail-label">教练</view><view class="detail-value">{{detail.coach_name || '-'}}</view></view>
+      <view class="detail-line"><view class="detail-label">状态</view><view class="detail-value">{{detail.status_text}}</view></view>
+      <view class="detail-line"><view class="detail-label">剩余课时</view><view class="detail-value">{{detail.remaining_classes}}</view></view>
+      <view wx:if="{{detail.remark}}" class="detail-line"><view class="detail-label">备注</view><view class="detail-value">{{detail.remark}}</view></view>
+    </view>
+
+    <view class="confirm-actions">
+      <button class="ghost-btn" bindtap="confirm" data-action="reject" disabled="{{detail.status !== 'pending'}}">拒绝</button>
+      <button class="btn" bindtap="confirm" data-action="accept" disabled="{{detail.status !== 'pending'}}">确认上课</button>
+    </view>
+  </view>
+
+  <view wx:else class="empty-card">未找到课程信息。</view>
+</view>

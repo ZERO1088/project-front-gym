@@ -1,0 +1,9 @@
+<view class="launch-page">
+  <view class="launch-orb">
+    <view class="launch-symbol">∞</view>
+  </view>
+  <view class="launch-title">私教健身房管理</view>
+  <view class="launch-subtitle">为教练和学员准备的轻量课程管理工具</view>
+  <view class="launch-caption">课程、待办与课时确认会在进入后自然展开。</view>
+  <view class="launch-skip" bindtap="skip">轻触进入</view>
+</view>

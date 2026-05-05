@@ -1,0 +1,97 @@
+<view class="page-shell page">
+  <view class="hero-card manager-hero">
+    <view class="hero-row">
+      <view class="hero-icon">员</view>
+      <view class="hero-main">
+        <view class="hero-title">学员管理</view>
+        <view class="hero-subtitle">默认展示最新学员，管理学员资料与课次。</view>
+      </view>
+    </view>
+    <button class="btn add-btn" bindtap="goAdd">新增学员</button>
+  </view>
+
+  <view wx:if="{{!students.length}}" class="section-card empty-card">
+    <view class="empty-title">暂无学员</view>
+    <view class="empty-desc">先新增一位学员，再进行排课和课程确认。</view>
+    <button class="btn add-btn add-btn--empty" bindtap="goAdd">去新增学员</button>
+  </view>
+
+  <view wx:for="{{students}}" wx:key="id" class="section-card student-card {{item.is_new ? 'student-card--new' : ''}}">
+    <view class="student-head" bindtap="toggleExpand" data-student-id="{{item.id}}">
+      <view class="student-head-main">
+        <view class="student-title-row">
+          <view class="student-name">{{item.name}}</view>
+          <view wx:if="{{item.is_bound}}" class="status-tag status-completed">已绑定</view>
+          <view wx:else class="status-tag status-muted">未绑定</view>
+        </view>
+        <view class="student-phone">{{item.phone || '-'}}</view>
+        <view class="student-summary-tip">剩余 {{item.remaining_classes}} 次 · 已用 {{item.used_classes}} 次 · 总课时 {{item.total_classes}}</view>
+      </view>
+      <view class="student-arrow">{{item.expanded ? '收起 ^' : '展开 v'}}</view>
+    </view>
+
+    <view wx:if="{{item.is_new}}" class="student-new-badge">刚刚创建</view>
+
+    <view wx:if="{{item.expanded}}" class="student-detail">
+      <view class="metric-grid">
+        <view class="metric-card metric-card--highlight">
+          <view class="metric-label">剩余</view>
+          <view class="metric-value">{{item.remaining_classes}}</view>
+        </view>
+        <view class="metric-card">
+          <view class="metric-label">已用</view>
+          <view class="metric-value">{{item.used_classes}}</view>
+        </view>
+        <view class="metric-card">
+          <view class="metric-label">总课时</view>
+          <view class="metric-value">{{item.total_classes}}</view>
+        </view>
+      </view>
+
+      <view class="class-actions">
+        <button class="class-btn" bindtap="adjustClasses" data-student-id="{{item.id}}" data-mode="decrease" disabled="{{updatingStudentId === item.id}}">减 1 次</button>
+        <button class="class-btn class-btn--primary" bindtap="adjustClasses" data-student-id="{{item.id}}" data-mode="increase" disabled="{{updatingStudentId === item.id}}">加 1 次</button>
+      </view>
+
+      <view class="detail-panel">
+        <view class="panel-title">学员资料</view>
+        <view class="detail-row">
+          <view class="detail-label">性别</view>
+          <view class="detail-value">{{item.display_gender}}</view>
+        </view>
+        <view class="detail-row">
+          <view class="detail-label">生日</view>
+          <view class="detail-value">{{item.display_birthday}}</view>
+        </view>
+        <view class="detail-row">
+          <view class="detail-label">身高</view>
+          <view class="detail-value">{{item.display_height}}</view>
+        </view>
+        <view class="detail-row">
+          <view class="detail-label">体重</view>
+          <view class="detail-value">{{item.display_weight}}</view>
+        </view>
+        <view class="detail-row">
+          <view class="detail-label">目标</view>
+          <view class="detail-value">{{item.display_goal}}</view>
+        </view>
+        <view class="detail-row">
+          <view class="detail-label">备注</view>
+          <view class="detail-value">{{item.display_remark}}</view>
+        </view>
+      </view>
+
+      <view class="manage-actions">
+        <button
+          class="ghost-btn delete-btn"
+          bindtap="deleteStudent"
+          data-student-id="{{item.id}}"
+          data-student-name="{{item.name}}"
+          disabled="{{actionStudentId === item.id}}"
+        >
+          删除学员
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

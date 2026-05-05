@@ -1,0 +1,50 @@
+<view class="page-shell student-page">
+  <view class="segment-card">
+    <view class="segment-item segment-item--active">日历</view>
+    <view class="segment-item" bindtap="goProfile">我的</view>
+  </view>
+
+  <view class="hero-card">
+    <view class="hero-title">日历</view>
+    <view class="hero-subtitle">带有上课记录的日期会高亮，点开后可查看当天课程时间。</view>
+  </view>
+
+  <view wx:if="{{unbound}}" class="section-card empty-state">
+    <view class="section-title">尚未绑定学员身份</view>
+    <view class="hero-subtitle">请先从教练发送的课程确认页进入，系统会自动完成本机绑定。</view>
+  </view>
+
+  <block wx:elif="{{student}}">
+    <view class="calendar-bar">
+      <button class="ghost-btn" bindtap="changeMonth" data-diff="-1">上月</button>
+      <view class="calendar-title">{{monthText}}</view>
+      <button class="ghost-btn" bindtap="changeMonth" data-diff="1">下月</button>
+    </view>
+
+    <view class="calendar-grid">
+      <view wx:for="{{weekLabels}}" wx:key="*this" class="calendar-week">{{item}}</view>
+      <view wx:for="{{calendarDays}}" wx:key="key" class="calendar-day {{item.empty ? 'calendar-day--empty' : ''}} {{item.active ? 'calendar-day--active' : ''}} {{item.highlighted ? 'calendar-day--marked' : ''}}" bindtap="pickDay" data-date="{{item.date}}">
+        <block wx:if="{{!item.empty}}">
+          <view class="calendar-day-number">{{item.day}}</view>
+          <view wx:if="{{item.highlighted}}" class="calendar-day-dot"></view>
+        </block>
+      </view>
+    </view>
+
+    <view class="section-card">
+      <view class="section-title">当天课程</view>
+      <view wx:if="{{selectedCourses.length}}">
+        <view class="detail-stack">
+          <view wx:for="{{selectedCourses}}" wx:key="id" class="detail-line">
+            <view>
+              <view class="detail-value">{{item.time_range}}</view>
+              <view class="field-hint">{{item.coach_name || '-'}} · {{item.status_text}}</view>
+            </view>
+            <view class="detail-value">{{item.remark || ''}}</view>
+          </view>
+        </view>
+      </view>
+      <view wx:else class="field-hint">这一天没有课程记录。</view>
+    </view>
+  </block>
+</view>
